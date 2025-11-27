@@ -169,14 +169,14 @@
 
         private void studentListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Your code for student list goes here
-            MessageBox.Show("Student List clicked!");
+            StudentListForm studentListForm = new StudentListForm();
+            studentListForm.Show(this);
         }
 
         private void manageFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Your code for managing form goes here
-            MessageBox.Show("Manage Form clicked!");
+            StudentListForm studentListForm = new StudentListForm();
+            studentListForm.Show(this);
         }
 
         private void printTheStudentFormToolStripMenuItem_Click(object sender, EventArgs e)

@@ -34,6 +34,10 @@
             textBoxLname = new TextBox();
             buttonAddStudent = new Button();
             buttonCancel = new Button();
+            label3 = new Label();
+            textBoxStudentGroup = new TextBox();
+            label4 = new Label();
+            textBoxGroupId = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -61,7 +65,7 @@
             // textBoxFname
             // 
             textBoxFname.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBoxFname.Location = new Point(188, 47);
+            textBoxFname.Location = new Point(297, 47);
             textBoxFname.Name = "textBoxFname";
             textBoxFname.Size = new Size(227, 35);
             textBoxFname.TabIndex = 2;
@@ -69,7 +73,7 @@
             // textBoxLname
             // 
             textBoxLname.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBoxLname.Location = new Point(182, 121);
+            textBoxLname.Location = new Point(297, 121);
             textBoxLname.Name = "textBoxLname";
             textBoxLname.Size = new Size(227, 35);
             textBoxLname.TabIndex = 3;
@@ -78,30 +82,74 @@
             // 
             buttonAddStudent.BackColor = SystemColors.GradientInactiveCaption;
             buttonAddStudent.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            buttonAddStudent.Location = new Point(303, 226);
+            buttonAddStudent.Location = new Point(297, 435);
             buttonAddStudent.Name = "buttonAddStudent";
             buttonAddStudent.Size = new Size(112, 46);
             buttonAddStudent.TabIndex = 4;
             buttonAddStudent.Text = "Add";
             buttonAddStudent.UseVisualStyleBackColor = false;
+            buttonAddStudent.Click += buttonAddStudent_Click;
             // 
             // buttonCancel
             // 
             buttonCancel.BackColor = Color.Red;
             buttonCancel.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            buttonCancel.Location = new Point(165, 226);
+            buttonCancel.Location = new Point(156, 435);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(112, 46);
             buttonCancel.TabIndex = 5;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = false;
+            buttonCancel.Click += buttonCancel_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 213);
+            label3.Name = "label3";
+            label3.Size = new Size(213, 29);
+            label3.TabIndex = 6;
+            label3.Text = "Student Group: ";
+            label3.UseMnemonic = false;
+            // 
+            // textBoxStudentGroup
+            // 
+            textBoxStudentGroup.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBoxStudentGroup.Location = new Point(297, 213);
+            textBoxStudentGroup.Name = "textBoxStudentGroup";
+            textBoxStudentGroup.Size = new Size(227, 35);
+            textBoxStudentGroup.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(12, 296);
+            label4.Name = "label4";
+            label4.Size = new Size(134, 29);
+            label4.TabIndex = 8;
+            label4.Text = "Group Id:";
+            label4.UseMnemonic = false;
+            // 
+            // textBoxGroupId
+            // 
+            textBoxGroupId.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBoxGroupId.Location = new Point(297, 307);
+            textBoxGroupId.Name = "textBoxGroupId";
+            textBoxGroupId.Size = new Size(227, 35);
+            textBoxGroupId.TabIndex = 9;
             // 
             // CreateNewStudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(429, 389);
+            ClientSize = new Size(573, 587);
+            Controls.Add(textBoxGroupId);
+            Controls.Add(label4);
+            Controls.Add(textBoxStudentGroup);
+            Controls.Add(label3);
             Controls.Add(buttonCancel);
             Controls.Add(buttonAddStudent);
             Controls.Add(textBoxLname);
@@ -123,5 +171,9 @@
         private TextBox textBoxLname;
         private Button buttonAddStudent;
         private Button buttonCancel;
+        private Label label3;
+        private TextBox textBoxStudentGroup;
+        private Label label4;
+        private TextBox textBoxGroupId;
     }
 }
