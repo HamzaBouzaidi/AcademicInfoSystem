@@ -22,4 +22,8 @@
     <PackageReference Include="MySql.Data" Version="9.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms student\" />
+  </ItemGroup>
+
 </Project>

@@ -79,6 +79,7 @@ namespace AcademicInfoSystem
             textBoxFirsname.Name = "textBoxFirsname";
             textBoxFirsname.Size = new Size(206, 35);
             textBoxFirsname.TabIndex = 4;
+            textBoxFirsname.Text = "Admin";
             // 
             // textBoxLastname
             // 
@@ -88,6 +89,7 @@ namespace AcademicInfoSystem
             textBoxLastname.Name = "textBoxLastname";
             textBoxLastname.Size = new Size(206, 35);
             textBoxLastname.TabIndex = 5;
+            textBoxLastname.Text = "Admin";
             // 
             // label4
             // 
@@ -108,6 +110,7 @@ namespace AcademicInfoSystem
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(206, 35);
             textBoxUsername.TabIndex = 7;
+            textBoxUsername.Text = "Admin";
             // 
             // label5
             // 
@@ -128,6 +131,7 @@ namespace AcademicInfoSystem
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(206, 35);
             textBoxPassword.TabIndex = 9;
+            textBoxPassword.Text = "Admin";
             textBoxPassword.UseSystemPasswordChar = true;
             // 
             // label6

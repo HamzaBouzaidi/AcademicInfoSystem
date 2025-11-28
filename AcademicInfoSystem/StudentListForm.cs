@@ -27,5 +27,17 @@ namespace AcademicInfoSystem
             dataGridView1.RowTemplate.Height = 30;
             dataGridView1.DataSource = student.GetStudentList(command);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            UpdateDeleteStudentForm updateDeleteStudentForm = new UpdateDeleteStudentForm();
+            updateDeleteStudentForm.textBoxStudentId.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            updateDeleteStudentForm.textBoxFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            updateDeleteStudentForm.textBoxLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            updateDeleteStudentForm.textBoxStudentGroup.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            updateDeleteStudentForm.textBoxGroupId.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            updateDeleteStudentForm.Show();
+        }
     }
+
 }

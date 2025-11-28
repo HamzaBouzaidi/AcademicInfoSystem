@@ -19,6 +19,7 @@ namespace AcademicInfoSystem
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
+           
             if (!verify())
             {
                 MessageBox.Show("Please fill in all fields.");
