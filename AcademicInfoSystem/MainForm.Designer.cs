@@ -1,4 +1,6 @@
-﻿namespace AcademicInfoSystem
+﻿using AcademicInfoSystem.Forms_Subject;
+
+namespace AcademicInfoSystem
 {
     partial class MainForm
     {
@@ -36,6 +38,9 @@
             manageFormToolStripMenuItem = new ToolStripMenuItem();
             printTheStudentFormToolStripMenuItem = new ToolStripMenuItem();
             subjectToolStripMenuItem = new ToolStripMenuItem();
+            addSubjectToolStripMenuItem = new ToolStripMenuItem();
+            updateSubjectToolStripMenuItem = new ToolStripMenuItem();
+            subjectListToolStripMenuItem = new ToolStripMenuItem();
             groupsToolStripMenuItem = new ToolStripMenuItem();
             gradesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
@@ -105,10 +110,35 @@
             // 
             // subjectToolStripMenuItem
             // 
+            subjectToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addSubjectToolStripMenuItem, updateSubjectToolStripMenuItem, subjectListToolStripMenuItem });
             subjectToolStripMenuItem.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             subjectToolStripMenuItem.Name = "subjectToolStripMenuItem";
             subjectToolStripMenuItem.Size = new Size(116, 34);
             subjectToolStripMenuItem.Text = "SUBJECTS";
+            // 
+            // addSubjectToolStripMenuItem
+            // 
+            addSubjectToolStripMenuItem.BackColor = Color.DarkSalmon;
+            addSubjectToolStripMenuItem.Name = "addSubjectToolStripMenuItem";
+            addSubjectToolStripMenuItem.Size = new Size(295, 34);
+            addSubjectToolStripMenuItem.Text = "Add Subject";
+            addSubjectToolStripMenuItem.Click += addSubjectToolStripMenuItem_Click;
+            // 
+            // updateSubjectToolStripMenuItem
+            // 
+            updateSubjectToolStripMenuItem.BackColor = Color.DarkSalmon;
+            updateSubjectToolStripMenuItem.Name = "updateSubjectToolStripMenuItem";
+            updateSubjectToolStripMenuItem.Size = new Size(295, 34);
+            updateSubjectToolStripMenuItem.Text = "Update/Delete Subject";
+            updateSubjectToolStripMenuItem.Click += updateSubjectToolStripMenuItem_Click;
+            // 
+            // subjectListToolStripMenuItem
+            // 
+            subjectListToolStripMenuItem.BackColor = Color.DarkSalmon;
+            subjectListToolStripMenuItem.Name = "subjectListToolStripMenuItem";
+            subjectListToolStripMenuItem.Size = new Size(295, 34);
+            subjectListToolStripMenuItem.Text = "Subject List";
+            subjectListToolStripMenuItem.Click += subjectListToolStripMenuItem_Click;
             // 
             // groupsToolStripMenuItem
             // 
@@ -157,8 +187,8 @@
         private void createNewStudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Your code for creating new student goes here
-           CreateNewStudentForm createForm = new CreateNewStudentForm();
-              createForm.Show(this);
+            CreateNewStudentForm createForm = new CreateNewStudentForm();
+            createForm.Show(this);
         }
 
         private void updateStudentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -184,5 +214,28 @@
             // Your code for printing student form goes here
             MessageBox.Show("Print Student Form clicked!");
         }
+        private MenuStrip menuStrip2;
+        private ToolStripMenuItem addSubjectToolStripMenuItem;
+        private ToolStripMenuItem updateSubjectToolStripMenuItem ;
+        private ToolStripMenuItem subjectListToolStripMenuItem;
+        private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateSubjectForm createSubjectForm = new CreateSubjectForm();
+            createSubjectForm.Show(this);
+        }
+
+        private void updateSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           updateSubjectForm updateSubjectForm = new updateSubjectForm();
+            updateSubjectForm.Show(this);
+        }
+        
+
+        private void subjectListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubjectListForm subjectListForm = new SubjectListForm();
+            subjectListForm.Show(this);
+        }
+
     }
 }

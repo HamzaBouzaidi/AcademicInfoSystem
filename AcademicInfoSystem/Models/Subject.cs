@@ -5,36 +5,31 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 
-namespace AcademicInfoSystem
+namespace AcademicInfoSystem.Models
 {
-    internal class Student
+    internal class Subject
     {
-        // i need to access the database connection here
-        // make command to insert student data into the database
 
-
-        public bool AddStudent(string firstName, string lastName, int UserId, int GroupId, string StudentGroup)
+        // do the same crud operations for subject as done for student in Student.cs 
+        public bool AddSubject(int SubjectId, string Name, int TeacherId)
         {
-
             try
             {
-
                 MySqlConnection connection = DatabaseConnection.GetConnection();
-                if (connection.State == System.Data.ConnectionState.Closed)
+                if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
                 }
+                MySqlCommand command = new MySqlCommand("INSERT INTO subject (Name, TeacherId) VALUES (@subn, @TeaId)", connection);
+                command.Parameters.Add("@subn", MySqlDbType.VarChar).Value = Name;
+                command.Parameters.Add("@TeaId", MySqlDbType.Int32).Value = TeacherId;
+                command.Parameters.Add("@sid", MySqlDbType.Int32).Value = SubjectId;
 
-                MySqlCommand command = new MySqlCommand("INSERT INTO student (FirstName, LastName,  UserId,  GroupId, StudentGroup) VALUES (@fname, @lname, @uid, @gid, @Stdg)", connection);
-                command.Parameters.Add("@fname", MySqlDbType.VarChar).Value = firstName;
-                command.Parameters.Add("@lname", MySqlDbType.VarChar).Value = lastName;
-                command.Parameters.Add("@uid", MySqlDbType.Int32).Value = UserId;
-                command.Parameters.Add("@gid", MySqlDbType.Int32).Value = GroupId;
-                command.Parameters.Add("@Stdg", MySqlDbType.VarChar).Value = StudentGroup;
 
 
                 int result = command.ExecuteNonQuery();
@@ -53,10 +48,11 @@ namespace AcademicInfoSystem
                 return false;
 
             }
+
         }
 
-
-        public DataTable GetStudentList(MySqlCommand command)
+        // list subjects
+        public DataTable GetSubjectList(MySqlCommand command)
         {
             command.Connection = DatabaseConnection.GetConnection();
 
@@ -66,55 +62,21 @@ namespace AcademicInfoSystem
             return table;
 
         }
-        public bool UpdateStudentList(int StudentId, string firstName, string lastName,  int GroupId, string StudentGroup)
+
+        public bool UpdateSubject(int SubjectId, string Name, int TeacherId)
         {
-            try
-            { 
 
-                MySqlConnection connection = DatabaseConnection.GetConnection();
-                if (connection.State == System.Data.ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                MySqlCommand command = new MySqlCommand(" Update student set  FirstName = @fname, LastName = @lname , GroupId = @gid , StudentGroup = @Stdg where StudentId =@stdid ", connection);
-                command.Parameters.Add("@stdid", MySqlDbType.Int32).Value = StudentId;
-                command.Parameters.Add("@fname", MySqlDbType.VarChar).Value = firstName;
-                command.Parameters.Add("@lname", MySqlDbType.VarChar).Value = lastName;
-                
-                command.Parameters.Add("@gid", MySqlDbType.Int32).Value = GroupId;
-                command.Parameters.Add("@Stdg", MySqlDbType.VarChar).Value = StudentGroup;
-
-
-                int result = command.ExecuteNonQuery();
-
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-
-
-                }
-                return result == 1;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Database Error: " + ex.Message);
-                return false;
-
-            }
-        }
-
-        public bool DeleteStudent(int StudentId)
-        {
             try
             {
                 MySqlConnection connection = DatabaseConnection.GetConnection();
-                if (connection.State == System.Data.ConnectionState.Closed)
+                if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
                 }
-                MySqlCommand command = new MySqlCommand(" Delete from student  where StudentId = @stdid", connection);
-                command.Parameters.Add("@stdid", MySqlDbType.Int32).Value = StudentId;
+                MySqlCommand command = new MySqlCommand("UPDATE subject SET Name=@subn, TeacherId=@TeaId WHERE SubjectId=@sid", connection);
+                command.Parameters.Add("@subn", MySqlDbType.VarChar).Value = Name;
+                command.Parameters.Add("@TeaId", MySqlDbType.Int32).Value = TeacherId;
+                command.Parameters.Add("@sid", MySqlDbType.Int32).Value = SubjectId;
 
                 int result = command.ExecuteNonQuery();
                 if (connection.State == ConnectionState.Open)
@@ -123,18 +85,53 @@ namespace AcademicInfoSystem
 
                 }
                 return result == 1;
+
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Database Error: " + ex.Message);
                 return false;
+            }
 
+        }
+
+
+        public bool DeleteSubject(int SubjectId)
+        {
+            try
+            {
+                MySqlConnection connection = DatabaseConnection.GetConnection();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                MySqlCommand command = new MySqlCommand("DELETE FROM subject WHERE SubjectId=@sid", connection);
+                command.Parameters.Add("@sid", MySqlDbType.Int32).Value = SubjectId;
+                int result = command.ExecuteNonQuery();
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+                return result == 1;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message);
+                return false;
             }
         }
 
-        
+        public DataTable GetSubjectsList (MySqlCommand command)
+        {
+            command.Connection = DatabaseConnection.GetConnection();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            return table;
+
+        }
     }
 }
 
-        
-    
+
+

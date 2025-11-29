@@ -1,6 +1,6 @@
 ﻿namespace AcademicInfoSystem
 {
-    partial class UpdateDeleteStudentForm
+    partial class updateStudentForm
     {
         /// <summary>
         /// Required designer variable.

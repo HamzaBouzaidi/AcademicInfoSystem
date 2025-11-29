@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using AcademicInfoSystem.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,7 @@ namespace AcademicInfoSystem
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            UpdateDeleteStudentForm updateDeleteStudentForm = new UpdateDeleteStudentForm();
+            updateStudentForm updateDeleteStudentForm = new updateStudentForm();
             updateDeleteStudentForm.textBoxStudentId.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             updateDeleteStudentForm.textBoxFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             updateDeleteStudentForm.textBoxLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
