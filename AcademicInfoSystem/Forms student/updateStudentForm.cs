@@ -37,7 +37,7 @@ namespace AcademicInfoSystem
 
 
         }
-        
+
         private void buttonFind_Click(object sender, EventArgs e)
         {
 
@@ -76,14 +76,14 @@ namespace AcademicInfoSystem
 
 
         }
-         
+
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
 
-            
+
             int StudentId = Convert.ToInt32(textBoxStudentId.Text);
-            if (MessageBox.Show("Are you sure you wanna delete this student ", "Delet Student ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you wanna delete this student ", "Delet Student ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (student.DeleteStudent(StudentId))
                 {
@@ -97,9 +97,13 @@ namespace AcademicInfoSystem
                 {
                     MessageBox.Show("Failed to delete student. Check database connection.", "Delete student ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                }
-            
+            }
+
         }
-    
+
+        private void updateStudentForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -36,7 +36,7 @@
             textBoxTeacherId = new TextBox();
             buttonRemoveSubject = new Button();
             buttonEditSubject = new Button();
-            textBoxStudentId = new TextBox();
+            textBoxSubjectId = new TextBox();
             SuspendLayout();
             // 
             // SubjectId
@@ -121,13 +121,13 @@
             buttonEditSubject.UseVisualStyleBackColor = false;
             buttonEditSubject.Click += buttonEditSubject_Click;
             // 
-            // textBoxStudentId
+            // textBoxSubjectId
             // 
-            textBoxStudentId.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxStudentId.Location = new Point(261, 61);
-            textBoxStudentId.Name = "textBoxStudentId";
-            textBoxStudentId.Size = new Size(163, 35);
-            textBoxStudentId.TabIndex = 23;
+            textBoxSubjectId.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxSubjectId.Location = new Point(261, 61);
+            textBoxSubjectId.Name = "textBoxSubjectId";
+            textBoxSubjectId.Size = new Size(163, 35);
+            textBoxSubjectId.TabIndex = 23;
             // 
             // updateSubjectForm
             // 
@@ -135,7 +135,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(588, 590);
-            Controls.Add(textBoxStudentId);
+            Controls.Add(textBoxSubjectId);
             Controls.Add(buttonRemoveSubject);
             Controls.Add(buttonEditSubject);
             Controls.Add(textBoxTeacherId);
@@ -161,7 +161,7 @@
         internal TextBox textBoxTeacherId;
         internal Button buttonRemoveSubject;
         internal Button buttonEditSubject;
-        internal TextBox textBoxStudentId;
+        internal TextBox textBoxSubjectId;
        
 
     }

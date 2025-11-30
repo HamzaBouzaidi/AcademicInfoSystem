@@ -28,34 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dataGridView2 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridView2
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1170, 359);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(0, 2);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(1170, 359);
+            dataGridView2.TabIndex = 0;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
-            // SubjetListForm
+            // SubjectListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1171, 543);
-            Controls.Add(dataGridView1);
-            Name = "SubjetListForm";
+            Controls.Add(dataGridView2);
+            Name = "SubjectListForm";
             Text = "SubjetListForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += this.SubjectListForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView2;
     }
 }

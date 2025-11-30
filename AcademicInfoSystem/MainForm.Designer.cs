@@ -1,4 +1,5 @@
-﻿using AcademicInfoSystem.Forms_Subject;
+﻿using AcademicInfoSystem.Forms_Group;
+using AcademicInfoSystem.Forms_Subject;
 
 namespace AcademicInfoSystem
 {
@@ -42,6 +43,9 @@ namespace AcademicInfoSystem
             updateSubjectToolStripMenuItem = new ToolStripMenuItem();
             subjectListToolStripMenuItem = new ToolStripMenuItem();
             groupsToolStripMenuItem = new ToolStripMenuItem();
+            addGroupToolStripMenuItem = new ToolStripMenuItem();
+            updateDeleteGroupToolStripMenuItem = new ToolStripMenuItem();
+            groupListToolStripMenuItem = new ToolStripMenuItem();
             gradesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -142,10 +146,34 @@ namespace AcademicInfoSystem
             // 
             // groupsToolStripMenuItem
             // 
+            groupsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addGroupToolStripMenuItem, updateDeleteGroupToolStripMenuItem, groupListToolStripMenuItem });
             groupsToolStripMenuItem.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
             groupsToolStripMenuItem.Size = new Size(105, 34);
             groupsToolStripMenuItem.Text = "GROUPS";
+            // 
+            // addGroupToolStripMenuItem
+            // 
+            addGroupToolStripMenuItem.BackColor = Color.DarkSalmon;
+            addGroupToolStripMenuItem.Name = "addGroupToolStripMenuItem";
+            addGroupToolStripMenuItem.Size = new Size(290, 34);
+            addGroupToolStripMenuItem.Text = "Add Group";
+            addGroupToolStripMenuItem.Click += addGroupToolStripMenuItem_Click;
+            // 
+            // updateDeleteGroupToolStripMenuItem
+            // 
+            updateDeleteGroupToolStripMenuItem.BackColor = Color.DarkSalmon;
+            updateDeleteGroupToolStripMenuItem.Name = "updateDeleteGroupToolStripMenuItem";
+            updateDeleteGroupToolStripMenuItem.Size = new Size(290, 34);
+            updateDeleteGroupToolStripMenuItem.Text = "Update/Delete Group ";
+            updateDeleteGroupToolStripMenuItem.Click += UpdateDeleteGroup_Click;
+            // 
+            // groupListToolStripMenuItem
+            // 
+            groupListToolStripMenuItem.BackColor = Color.DarkSalmon;
+            groupListToolStripMenuItem.Name = "groupListToolStripMenuItem";
+            groupListToolStripMenuItem.Size = new Size(290, 34);
+            groupListToolStripMenuItem.Text = "Group List";
             // 
             // gradesToolStripMenuItem
             // 
@@ -237,5 +265,27 @@ namespace AcademicInfoSystem
             subjectListForm.Show(this);
         }
 
+        private MenuStrip menuStrip3;
+        private ToolStripMenuItem addGroupToolStripMenuItem;
+        private ToolStripMenuItem updateDeleteGroupToolStripMenuItem;
+        private ToolStripMenuItem groupListToolStripMenuItem;
+        private void addGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+            CreateNewGroupForm createNewGroupForm   = new CreateNewGroupForm();
+            createNewGroupForm.Show(this);
+        }
+
+       
+
+        private void UpdateDeleteGroup_Click(object sender, EventArgs e)
+        {
+           
+            UpdateDeleteGroupForm updateDeleteGroupForm = new UpdateDeleteGroupForm();
+            updateDeleteGroupForm.Show(this);
+        }
     }
+
+   
 }

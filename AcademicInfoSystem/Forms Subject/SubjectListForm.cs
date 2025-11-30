@@ -20,22 +20,22 @@ namespace AcademicInfoSystem.Forms_Subject
         }
        
         Subject subject = new Subject();
-        private void SubjectList_Load(object sender, EventArgs e)
+        private void SubjectListForm_Load(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("Select * from Subject");
-            dataGridView1.ReadOnly = true;
+            MySqlCommand command = new MySqlCommand("Select * from subject");
+            dataGridView2.ReadOnly = true;
             DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
-            dataGridView1.RowTemplate.Height = 30;
-            dataGridView1.DataSource = subject.GetSubjectsList(command);
+            dataGridView2.RowTemplate.Height = 30;
+            dataGridView2.DataSource = subject.GetSubjectsList(command);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            updateStudentForm updateDeleteSubjectForm = new updateStudentForm();
-            updateDeleteSubjectForm.textBoxStudentId.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            updateDeleteSubjectForm.textBoxFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            updateDeleteSubjectForm.textBoxLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            updateDeleteSubjectForm.Show();
+            updateStudentForm updateStudentForm = new updateStudentForm();
+          //  updateStudentForm.textBoxSubjectId.Text = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+          //  updateStudentForm.textBoxSubjectName.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+           // updateStudentForm.textBoxTeacherId.Text = dataGridView2.CurrentRow.Cells[2].Value.ToString();
+           // updateStudentForm.Show();
         }
     }
 }

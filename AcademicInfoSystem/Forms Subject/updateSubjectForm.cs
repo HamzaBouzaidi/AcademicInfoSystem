@@ -38,8 +38,8 @@ namespace AcademicInfoSystem.Forms_Subject
 
         private void buttonFind_Click(object sender, EventArgs e)
         {
-            int SubjectId = Convert.ToInt32(textBoxStudentId.Text);
-            MySqlCommand command = new MySqlCommand("SELECT SubjectId, Name, TeacherId FROM Subject Where SubjectId = " + SubjectId);
+            int SubjectId = Convert.ToInt32(textBoxSubjectId.Text);
+            MySqlCommand command = new MySqlCommand("SELECT SubjectId, Name, TeacherId FROM subject Where SubjectId = " + SubjectId);
             DataTable table = subject.GetSubjectList(command);
             if (table.Rows.Count > 0)
             {
@@ -55,7 +55,7 @@ namespace AcademicInfoSystem.Forms_Subject
 
         public void buttonEditSubject_Click(object sender, EventArgs e)
         {
-           int SubjectId = Convert.ToInt32(textBoxStudentId.Text);
+           int SubjectId = Convert.ToInt32(textBoxSubjectId.Text);
               string Name = textBoxSubjectName.Text;
               int TeacherId = textBoxTeacherId.Text.Trim() == "" ? 0 : int.Parse(textBoxTeacherId.Text.Trim());
                 if(subject.UpdateSubject(SubjectId,  Name, TeacherId))
@@ -71,7 +71,7 @@ namespace AcademicInfoSystem.Forms_Subject
 
         public void buttonRemoveSubject_Click(object sender, EventArgs e)
         {
-           int SubjectId = Convert.ToInt32(textBoxStudentId.Text);
+           int SubjectId = Convert.ToInt32(textBoxSubjectId.Text);
                 if(subject.DeleteSubject(SubjectId))
                 {
                     MessageBox.Show("Subject deleted successfully.");
