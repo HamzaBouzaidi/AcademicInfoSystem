@@ -83,7 +83,7 @@
             buttonFindGroup.TabIndex = 16;
             buttonFindGroup.Text = "Find";
             buttonFindGroup.UseVisualStyleBackColor = false;
-            buttonFindGroup.Click += this.buttonFindGroup_Click;
+            buttonFindGroup.Click += buttonFindGroup_Click;
             // 
             // buttonRemoveGroup
             // 
@@ -95,6 +95,7 @@
             buttonRemoveGroup.TabIndex = 18;
             buttonRemoveGroup.Text = "Remove";
             buttonRemoveGroup.UseVisualStyleBackColor = false;
+            buttonRemoveGroup.Click += buttonRemoveGroup_Click;
             // 
             // buttonEditGroup
             // 
@@ -106,7 +107,7 @@
             buttonEditGroup.TabIndex = 17;
             buttonEditGroup.Text = "Edit";
             buttonEditGroup.UseVisualStyleBackColor = false;
-            buttonEditGroup.Click += this.buttonEditGroup_Click;
+            buttonEditGroup.Click += buttonEditGroup_Click;
             // 
             // UpdateDeleteGroupForm
             // 
@@ -135,8 +136,7 @@
         private TextBox textBoxGroupId;
         private TextBox textBoxGroupName;
         private Button buttonFindGroup;
-        private Button buttonRemoveGroup;
         private Button buttonEditGroup;
-        
+        internal Button buttonRemoveGroup;
     }
 }

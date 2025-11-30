@@ -56,11 +56,32 @@ namespace AcademicInfoSystem.Forms_Group
         }
 
         private void buttonEditGroup_Click(object sender, EventArgs e)
-        { 
+        {
+            int GroupId = Convert.ToInt32(textBoxGroupId.Text);
+            string Name = textBoxGroupName.Text;
+          
+            if (group.UpdateGroup(GroupId, Name))
+            {
+                MessageBox.Show("Group updated successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Failed to update Group. Check foreign keys or database connection.");
+            }
         }
 
         private void buttonRemoveGroup_Click(object sender, EventArgs e)
         {
+             int GroupId = Convert.ToInt32(textBoxGroupId.Text);
+                if(group.DeleteGroup(GroupId))
+                {
+                    MessageBox.Show("Group deleted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete Group. It may be referenced by other records.");
+            }
+
         }
 
 

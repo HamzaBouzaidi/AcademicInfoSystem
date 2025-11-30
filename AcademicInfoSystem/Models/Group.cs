@@ -69,7 +69,7 @@ namespace AcademicInfoSystem.Models
                 {
                     connection.Open();
                 }
-                MySqlCommand command = new MySqlCommand("UPDATE studentgroup SET GroupId=@studId, Name=@Na WHERE GroupId=@studgId", connection);
+                MySqlCommand command = new MySqlCommand("UPDATE studentgroup SET GroupId=@studgId, Name=@Na WHERE GroupId=@studgId", connection);
                 command.Parameters.Add("@studgId", MySqlDbType.Int32).Value = GroupId;
                 command.Parameters.Add("@Na", MySqlDbType.VarChar).Value = Name;
                 

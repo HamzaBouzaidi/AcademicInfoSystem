@@ -65,7 +65,7 @@ namespace AcademicInfoSystem.Forms_Subject
                 else
                 {
                     MessageBox.Show("Failed to update subject. Check foreign keys or database connection.");
-            }
+                }
         }
 
 
