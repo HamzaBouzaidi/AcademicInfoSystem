@@ -40,6 +40,7 @@
             dataGridView3.Size = new Size(794, 249);
             dataGridView3.TabIndex = 0;
             dataGridView3.CellContentClick += dataGridView3_CellContentClick;
+            this.Load += new System.EventHandler(this.TeachersList_Load);
             // 
             // TeachersList
             // 

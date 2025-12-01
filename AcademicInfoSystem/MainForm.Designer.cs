@@ -210,6 +210,7 @@ namespace AcademicInfoSystem
             listTeachersToolStripMenuItem.Size = new Size(298, 34);
             listTeachersToolStripMenuItem.Text = "List Teachers";
             listTeachersToolStripMenuItem.Click += listTeachersToolStripMenuItem_Click;
+            
             // 
             // MainForm
             // 

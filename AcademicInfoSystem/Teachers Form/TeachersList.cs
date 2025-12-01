@@ -20,7 +20,7 @@ namespace AcademicInfoSystem.Teachers_Form
         }
 
         Teacher Teacher = new Teacher();
-        private void TeachersListForm_Load(object sender, EventArgs e)
+        private void TeachersList_Load(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("Select * from teacher");
             dataGridView3.ReadOnly = true;
@@ -31,7 +31,11 @@ namespace AcademicInfoSystem.Teachers_Form
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            UpdateDeleteTeacherForm     updateDeleteTeacherForm = new UpdateDeleteTeacherForm();
+          // updateDeleteTeacherForm.textBoxTeachertId.Text = dataGridView3.CurrentRow.Cells[0].Value.ToString();
+           // updateDeleteTeacherForm.textBoxUserIdName.Text = dataGridView3.CurrentRow.Cells[1].Value.ToString();
             
+          //  updateDeleteTeacherForm.Show();
         }
     }
 }
