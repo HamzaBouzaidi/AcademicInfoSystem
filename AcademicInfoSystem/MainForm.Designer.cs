@@ -1,5 +1,6 @@
 ﻿using AcademicInfoSystem.Forms_Group;
 using AcademicInfoSystem.Forms_Subject;
+using AcademicInfoSystem.Teachers_Form;
 
 namespace AcademicInfoSystem
 {
@@ -46,13 +47,16 @@ namespace AcademicInfoSystem
             addGroupToolStripMenuItem = new ToolStripMenuItem();
             updateDeleteGroupToolStripMenuItem = new ToolStripMenuItem();
             groupListToolStripMenuItem = new ToolStripMenuItem();
-            gradesToolStripMenuItem = new ToolStripMenuItem();
+            teacherToolStripMenuItem = new ToolStripMenuItem();
+            addTeacherToolStripMenuItem = new ToolStripMenuItem();
+            updateDeleteTeacherToolStripMenuItem = new ToolStripMenuItem();
+            listTeachersToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { studentToolStripMenuItem, subjectToolStripMenuItem, groupsToolStripMenuItem, gradesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { studentToolStripMenuItem, subjectToolStripMenuItem, groupsToolStripMenuItem, teacherToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(839, 38);
@@ -175,12 +179,37 @@ namespace AcademicInfoSystem
             groupListToolStripMenuItem.Size = new Size(290, 34);
             groupListToolStripMenuItem.Text = "Group List";
             // 
-            // gradesToolStripMenuItem
+            // teacherToolStripMenuItem
             // 
-            gradesToolStripMenuItem.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            gradesToolStripMenuItem.Name = "gradesToolStripMenuItem";
-            gradesToolStripMenuItem.Size = new Size(103, 34);
-            gradesToolStripMenuItem.Text = "GRADES";
+            teacherToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addTeacherToolStripMenuItem, updateDeleteTeacherToolStripMenuItem, listTeachersToolStripMenuItem });
+            teacherToolStripMenuItem.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            teacherToolStripMenuItem.Name = "teacherToolStripMenuItem";
+            teacherToolStripMenuItem.Size = new Size(124, 34);
+            teacherToolStripMenuItem.Text = "TEACHERS";
+            // 
+            // addTeacherToolStripMenuItem
+            // 
+            addTeacherToolStripMenuItem.BackColor = Color.DarkSalmon;
+            addTeacherToolStripMenuItem.Name = "addTeacherToolStripMenuItem";
+            addTeacherToolStripMenuItem.Size = new Size(298, 34);
+            addTeacherToolStripMenuItem.Text = "Add Teacher";
+            addTeacherToolStripMenuItem.Click += addTeacherToolStripMenuItem_Click;
+            // 
+            // updateDeleteTeacherToolStripMenuItem
+            // 
+            updateDeleteTeacherToolStripMenuItem.BackColor = Color.DarkSalmon;
+            updateDeleteTeacherToolStripMenuItem.Name = "updateDeleteTeacherToolStripMenuItem";
+            updateDeleteTeacherToolStripMenuItem.Size = new Size(298, 34);
+            updateDeleteTeacherToolStripMenuItem.Text = "Update/Delete Teacher";
+            updateDeleteTeacherToolStripMenuItem.Click += updateDeleteTeacherToolStripMenuItem_Click;
+            // 
+            // listTeachersToolStripMenuItem
+            // 
+            listTeachersToolStripMenuItem.BackColor = Color.DarkSalmon;
+            listTeachersToolStripMenuItem.Name = "listTeachersToolStripMenuItem";
+            listTeachersToolStripMenuItem.Size = new Size(298, 34);
+            listTeachersToolStripMenuItem.Text = "List Teachers";
+            listTeachersToolStripMenuItem.Click += listTeachersToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -205,7 +234,7 @@ namespace AcademicInfoSystem
         private ToolStripMenuItem studentToolStripMenuItem;
         private ToolStripMenuItem subjectToolStripMenuItem;
         private ToolStripMenuItem groupsToolStripMenuItem;
-        private ToolStripMenuItem gradesToolStripMenuItem;
+        private ToolStripMenuItem teacherToolStripMenuItem;
         private ToolStripMenuItem createNewStudentToolStripMenuItem;
         private ToolStripMenuItem updateStudentToolStripMenuItem;
         private ToolStripMenuItem studentListToolStripMenuItem;
@@ -244,7 +273,7 @@ namespace AcademicInfoSystem
         }
         private MenuStrip menuStrip2;
         private ToolStripMenuItem addSubjectToolStripMenuItem;
-        private ToolStripMenuItem updateSubjectToolStripMenuItem ;
+        private ToolStripMenuItem updateSubjectToolStripMenuItem;
         private ToolStripMenuItem subjectListToolStripMenuItem;
         private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -254,10 +283,10 @@ namespace AcademicInfoSystem
 
         private void updateSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           updateSubjectForm updateSubjectForm = new updateSubjectForm();
+            updateSubjectForm updateSubjectForm = new updateSubjectForm();
             updateSubjectForm.Show(this);
         }
-        
+
 
         private void subjectListToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -271,21 +300,46 @@ namespace AcademicInfoSystem
         private ToolStripMenuItem groupListToolStripMenuItem;
         private void addGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
 
-            CreateNewGroupForm createNewGroupForm   = new CreateNewGroupForm();
+
+            CreateNewGroupForm createNewGroupForm = new CreateNewGroupForm();
             createNewGroupForm.Show(this);
         }
 
-       
+
 
         private void UpdateDeleteGroup_Click(object sender, EventArgs e)
         {
-           
+
             UpdateDeleteGroupForm updateDeleteGroupForm = new UpdateDeleteGroupForm();
             updateDeleteGroupForm.Show(this);
         }
-    }
+        private MenuStrip menuStrip4;
+        private ToolStripMenuItem addTeacherToolStripMenuItem;
+        private ToolStripMenuItem updateDeleteTeacherToolStripMenuItem;
+        private ToolStripMenuItem listTeachersToolStripMenuItem;
 
-   
+
+        private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateNewTeacherForm createnewteacherform = new CreateNewTeacherForm();
+            createnewteacherform.Show(this);
+
+        }
+        private void updateDeleteTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           UpdateDeleteTeacherForm updateDeleteTeacherForm = new UpdateDeleteTeacherForm();
+            updateDeleteTeacherForm.Show( this);
+        }
+
+        private void listTeachersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            TeachersList teachersList = new TeachersList();
+                teachersList.Show(this);
+
+        }
+
+
+    }
 }
