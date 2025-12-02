@@ -1,7 +1,9 @@
 using System.Data;
 using System.Reflection;
 using AcademicInfoSystem.Database;
+using AcademicInfoSystem.Models;
 using MySql.Data.MySqlClient;
+using AcademicInfoSystem.TeacherMainForm;
 
 namespace AcademicInfoSystem
 {
@@ -238,30 +240,95 @@ namespace AcademicInfoSystem
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            DatabaseConnection dbCon = new DatabaseConnection();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            DataTable dt = new DataTable();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM user WHERE firstname=@fn AND lastname=@ln AND Login=@lg AND password=@pw ANd Role=@role", DatabaseConnection.GetConnection());
-            command.Parameters.Add("@fn", MySqlDbType.VarChar).Value = textBoxFirsname.Text;
-            command.Parameters.Add("@ln", MySqlDbType.VarChar).Value = textBoxLastname.Text;
-            command.Parameters.Add("@lg", MySqlDbType.VarChar).Value = textBoxUsername.Text;
-            command.Parameters.Add("@pw", MySqlDbType.VarChar).Value = textBoxPassword.Text;
-            command.Parameters.Add("@role", MySqlDbType.VarChar).Value = comboBoxRole.SelectedItem.ToString();
 
-
-            adapter.SelectCommand = command;
-            adapter.Fill(dt);
-
-            if (dt.Rows.Count > 0)
+            if (comboBoxRole.SelectedIndex == -1)
             {
-              this.DialogResult = DialogResult.OK;
-
-
+                MessageBox.Show("Please select a role.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            // Trim inputs
+            string firstName = textBoxFirsname.Text.Trim();
+            string lastName = textBoxLastname.Text.Trim();
+            string login = textBoxUsername.Text.Trim();
+            string password = textBoxPassword.Text.Trim();
+            string role = comboBoxRole.SelectedItem.ToString();
+
+            try
             {
-                MessageBox.Show("Invalid credentials. Please try again.", "Error",
-                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    // Check if user exists with these credentials
+                    MySqlCommand command = new MySqlCommand(
+                        "SELECT UserId, FirstName, LastName, Role, Login FROM user WHERE Firstname=@fn AND Lastname=@ln AND Login=@lg AND Password=@pw AND Role=@role",
+                        connection);
+
+                    command.Parameters.AddWithValue("@fn", firstName);
+                    command.Parameters.AddWithValue("@ln", lastName);
+                    command.Parameters.AddWithValue("@lg", login);
+                    command.Parameters.AddWithValue("@pw", password);
+                    command.Parameters.AddWithValue("@role", role);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // If we can read, login is successful
+                        {
+                            // Store user information in session
+                            UserSession.UserId = reader.GetInt32("UserId");
+                            UserSession.FirstName = reader.GetString("FirstName");
+                            UserSession.LastName = reader.GetString("LastName");
+                            UserSession.Role = reader.GetString("Role");
+                            UserSession.Login = reader.GetString("Login");
+
+                            // Show welcome message
+                            MessageBox.Show($"Welcome {UserSession.FirstName} ({UserSession.Role})!",
+                                           "Login Successful",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Redirect based on role
+                            RedirectBasedOnRole();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid credentials. Please try again.", "Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Login Error: {ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RedirectBasedOnRole()
+        {
+            switch (UserSession.Role)
+            {
+                case "Admin":
+                   var mainForm = new MainForm();
+                    mainForm.Show();
+                    this.Hide();
+                    break;
+
+                case "Teacher":
+                    TeacherMainForm.TeacherMainForm teacherForm = new TeacherMainForm.TeacherMainForm();
+                    teacherForm.Show();
+                    this.Hide();
+                    break;
+
+                case "Student":
+                    // StudentMainForm studentForm = new StudentMainForm();
+                    // studentForm.Show();
+                    // this.Hide();
+                    MessageBox.Show($"Welcome Student {UserSession.FirstName}! (Student form coming soon)",
+                                   "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
             }
 
         }

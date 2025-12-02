@@ -10,18 +10,20 @@ namespace AcademicInfoSystem
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+          //  ApplicationConfiguration.Initialize();
            // Application.Run(new Form1());
 
-            Form1 form = new Form1();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Application.Run(new MainForm());
-            }
-            else
-            {
-                Application.Exit();
-            }
+            //Form1 form = new Form1();
+            ApplicationConfiguration.Initialize();
+           Application.Run(new Form1());
+            /* if (form.ShowDialog() == DialogResult.OK)
+             {
+                 Application.Run(new MainForm());
+             }
+             else
+             {
+                 Application.Exit();
+             }*/
         }
     }
 }

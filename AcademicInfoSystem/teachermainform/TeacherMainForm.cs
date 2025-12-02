@@ -1,5 +1,4 @@
-﻿using AcademicInfoSystem.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,19 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AcademicInfoSystem
+namespace AcademicInfoSystem.TeacherMainForm
 {
-    public partial class MainForm : Form
+    public partial class TeacherMainForm : Form
     {
-        public MainForm()
+        public TeacherMainForm()
         {
             InitializeComponent();
         }
 
-        private void MainMenuForm_Load(object sender, EventArgs e)
-        {
-        
-        }
 
     }
 }

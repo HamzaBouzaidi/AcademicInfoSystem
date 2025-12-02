@@ -19,6 +19,7 @@ namespace AcademicInfoSystem.Database
 
         }
 
+
         public void openConnection()
         {
            if (GetConnection().State == System.Data.ConnectionState.Closed)
