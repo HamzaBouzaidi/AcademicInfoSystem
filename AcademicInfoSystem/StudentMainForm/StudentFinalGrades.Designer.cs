@@ -1,11 +1,14 @@
-﻿namespace AcademicInfoSystem.teachermainform
+﻿namespace AcademicInfoSystem.StudentMainForm
 {
-    partial class GradeList
+    
+
+    partial class StudentFinalGrades
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,36 +31,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView4 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+
+            dataGridView5 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView4
+            // dataGridView5
             // 
-            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Location = new Point(1, 2);
-            dataGridView4.Name = "dataGridView4";
-            dataGridView4.Size = new Size(802, 182);
-            dataGridView4.TabIndex = 0;
-            dataGridView4.CellContentClick += dataGridView4_CellContentClick;
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView5.Location = new Point(2, 3);
+            dataGridView5.Name = "dataGridView5";
+            dataGridView5.Size = new Size(1043, 159);
+            dataGridView5.TabIndex = 0;
+            this.Controls.Add(dataGridView5);
             // 
-            // GradeList
+            // StudentFinalGrades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView4);
-            Name = "GradeList";
-            Text = "GradeList";
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ClientSize = new Size(1057, 457);
+            Controls.Add(dataGridView5);
+            Name = "StudentFinalGrades";
+            Text = "StudentFinalGrades";
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
             ResumeLayout(false);
-            Load += new System.EventHandler(this.GradeListForm_Load);
-
         }
 
         #endregion
 
-        private DataGridView dataGridView4;
+        private DataGridView dataGridView5;
     }
 }

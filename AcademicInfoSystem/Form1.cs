@@ -326,8 +326,9 @@ namespace AcademicInfoSystem
                     // StudentMainForm studentForm = new StudentMainForm();
                     // studentForm.Show();
                     // this.Hide();
-                    MessageBox.Show($"Welcome Student {UserSession.FirstName}! (Student form coming soon)",
-                                   "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    StudentMainForm.studentmain studentForm = new StudentMainForm.studentmain();
+                    studentForm.Show();
+                    this.Hide();
                     break;
             }
 
