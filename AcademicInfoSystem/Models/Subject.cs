@@ -96,27 +96,45 @@ namespace AcademicInfoSystem.Models
         }
 
 
-        public bool DeleteSubject(int SubjectId)
+        public bool DeleteSubject(int subjectId)
         {
             try
             {
-                MySqlConnection connection = DatabaseConnection.GetConnection();
-                if (connection.State == ConnectionState.Closed)
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
+
+                    // Check if subject has grades
+                    string checkSql = "SELECT COUNT(*) FROM grade WHERE SubjectId = @subjectId";
+                    using (MySqlCommand checkCmd = new MySqlCommand(checkSql, connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("@subjectId", subjectId);
+                        int gradeCount = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (gradeCount > 0)
+                        {
+                            MessageBox.Show($"Cannot delete subject. It has {gradeCount} grade(s) assigned.\n" +
+                                          "Please delete the grades first or use 'Deactivate' instead.",
+                                          "Cannot Delete",
+                                          MessageBoxButtons.OK,
+                                          MessageBoxIcon.Warning);
+                            return false;
+                        }
+
+                        // No grades, safe to delete
+                        string deleteSql = "DELETE FROM subject WHERE SubjectId = @subjectId";
+                        using (MySqlCommand deleteCmd = new MySqlCommand(deleteSql, connection))
+                        {
+                            deleteCmd.Parameters.AddWithValue("@subjectId", subjectId);
+                            int result = deleteCmd.ExecuteNonQuery();
+                            return result == 1;
+                        }
+                    }
                 }
-                MySqlCommand command = new MySqlCommand("DELETE FROM subject WHERE SubjectId=@sid", connection);
-                command.Parameters.Add("@sid", MySqlDbType.Int32).Value = SubjectId;
-                int result = command.ExecuteNonQuery();
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-                return result == 1;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Database Error: " + ex.Message);
+                MessageBox.Show($"Error deleting subject: {ex.Message}");
                 return false;
             }
         }
