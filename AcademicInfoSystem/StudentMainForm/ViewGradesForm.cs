@@ -82,7 +82,7 @@ namespace AcademicInfoSystem.StudentMainForm
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-        }
+        }                           
 
 
 
