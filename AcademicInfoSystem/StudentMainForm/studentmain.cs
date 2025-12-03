@@ -17,5 +17,9 @@ namespace AcademicInfoSystem.StudentMainForm
             InitializeComponent();
         }
 
+        private void studentmain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

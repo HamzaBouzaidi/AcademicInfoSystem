@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using AcademicInfoSystem.Database;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,10 +35,10 @@ namespace AcademicInfoSystem.StudentMainForm
                 int studentIdInt = int.Parse(studentId);
                 int subjectIdInt = int.Parse(subjectId);
 
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
                 string sql = "SELECT Value, Date, Comment FROM grade WHERE StudentId = @sid AND SubjectId = @subid";
 
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -82,10 +83,7 @@ namespace AcademicInfoSystem.StudentMainForm
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-        }                           
-
-
-
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -93,4 +91,3 @@ namespace AcademicInfoSystem.StudentMainForm
         }
     }
 }
-        

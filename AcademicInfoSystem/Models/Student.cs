@@ -1,68 +1,54 @@
 ﻿using AcademicInfoSystem.Database;
-using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace AcademicInfoSystem.Models
 {
     internal class Student
     {
-        // i need to access the database connection here
-        // make command to insert student data into the database
-
-
         public bool AddStudent(string FirstName, string LastName, int UserId, int GroupId, string StudentGroup)
         {
-
             try
             {
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-
-               using  MySqlConnection connection = DatabaseConnection.GetConnection();
-                if (connection.State == ConnectionState.Closed)
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
-                    connection.Open(); 
+                    if (connection.State == ConnectionState.Closed)
+                    {
+                        connection.Open();
+                    }
+
+                    MySqlCommand command = new MySqlCommand("INSERT INTO student (FirstName, LastName,  UserId,  GroupId, StudentGroup) VALUES (@fname, @lname, @uid, @gid, @Stdg)", connection);
+                    command.Parameters.Add("@fname", MySqlDbType.VarChar).Value = FirstName;
+                    command.Parameters.Add("@lname", MySqlDbType.VarChar).Value = LastName;
+                    command.Parameters.Add("@uid", MySqlDbType.Int32).Value = UserId;
+                    command.Parameters.Add("@gid", MySqlDbType.Int32).Value = GroupId;
+                    command.Parameters.Add("@Stdg", MySqlDbType.VarChar).Value = StudentGroup;
+
+                    int result = command.ExecuteNonQuery();
+
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                    return result == 1;
                 }
-
-                MySqlCommand command = new MySqlCommand("INSERT INTO student (FirstName, LastName,  UserId,  GroupId, StudentGroup) VALUES (@fname, @lname, @uid, @gid, @Stdg)", connection);
-                command.Parameters.Add("@fname", MySqlDbType.VarChar).Value = FirstName;
-                command.Parameters.Add("@lname", MySqlDbType.VarChar).Value = LastName;
-                command.Parameters.Add("@uid", MySqlDbType.Int32).Value = UserId;
-                command.Parameters.Add("@gid", MySqlDbType.Int32).Value = GroupId;
-                command.Parameters.Add("@Stdg", MySqlDbType.VarChar).Value = StudentGroup;
-
-
-                int result = command.ExecuteNonQuery();
-
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-
-
-                }
-                return result == 1;
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Database Error: " + ex.Message);
                 return false;
-
             }
         }
-
 
         public DataTable GetStudentList(MySqlCommand command)
         {
             try
             {
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     command.Connection = connection;
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -77,12 +63,13 @@ namespace AcademicInfoSystem.Models
                 return new DataTable();
             }
         }
+
         public bool UpdateStudentList(int StudentId, string firstName, string lastName, int GroupId, string StudentGroup)
         {
             try
             {
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -111,8 +98,8 @@ namespace AcademicInfoSystem.Models
         {
             try
             {
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -132,10 +119,5 @@ namespace AcademicInfoSystem.Models
                 return false;
             }
         }
-
-
     }
 }
-
-        
-    

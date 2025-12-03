@@ -58,7 +58,7 @@
             viewYourGradesToolStripMenuItem.Name = "viewYourGradesToolStripMenuItem";
             viewYourGradesToolStripMenuItem.Size = new Size(308, 34);
             viewYourGradesToolStripMenuItem.Text = "View Your Grades";
-            viewYourGradesToolStripMenuItem.Click += this.viewYourGradesToolStripMenuItem_Click;
+            viewYourGradesToolStripMenuItem.Click += viewYourGradesToolStripMenuItem_Click;
             // 
             // logOutToolStripMenuItem
             // 
@@ -66,7 +66,7 @@
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             logOutToolStripMenuItem.Size = new Size(308, 34);
             logOutToolStripMenuItem.Text = "Log out";
-            logOutToolStripMenuItem.Click += this.logOutToolStripMenuItem_Click;
+            logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // studentmain
             // 
@@ -79,6 +79,7 @@
             Name = "studentmain";
             Text = "studentmain";
             WindowState = FormWindowState.Maximized;
+            Load += studentmain_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

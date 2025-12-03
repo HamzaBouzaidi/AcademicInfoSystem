@@ -1,9 +1,11 @@
 ﻿using AcademicInfoSystem.Database;
+using AcademicInfoSystem.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +18,8 @@ namespace AcademicInfoSystem.Models
         {
             try
             {
-               
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -41,6 +42,11 @@ namespace AcademicInfoSystem.Models
                 MessageBox.Show($"Database Error: {ex.Message}");
                 return false;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return false;
+            }
         }
 
 
@@ -48,10 +54,12 @@ namespace AcademicInfoSystem.Models
         {
             try
             {
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                // FIXED: Using statement should have parentheses for clarity
+                using (MySqlConnection conn = DatabaseConnection.GetConnection())
                 {
-                    command.Connection = connection;
+                    conn.Open();
+                    command.Connection = conn;
+
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
@@ -61,7 +69,7 @@ namespace AcademicInfoSystem.Models
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading grades: {ex.Message}");
-                return new DataTable(); // Return empty table on error
+                return new DataTable();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using AcademicInfoSystem.Models;
+﻿using AcademicInfoSystem.Database;
+using AcademicInfoSystem.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
@@ -27,9 +28,9 @@ namespace AcademicInfoSystem.teachermainform
             try
             {
                 string sql = "SELECT * FROM grade WHERE GradeId = @gradeId";
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
 
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -86,9 +87,9 @@ namespace AcademicInfoSystem.teachermainform
                 int subjectId = int.Parse(textBoxSubjectId.Text.Trim());
 
                 string sql = "SELECT * FROM grade WHERE StudentId = @studentId AND SubjectId = @subjectId";
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
 
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -251,10 +252,9 @@ namespace AcademicInfoSystem.teachermainform
                 string sql = "UPDATE grade SET StudentId = @studentId, SubjectId = @subjectId, " +
                             "Value = @value, Date = @date, Comment = @comment " +
                             "WHERE GradeId = @gradeId";
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
 
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
-
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -284,9 +284,9 @@ namespace AcademicInfoSystem.teachermainform
             try
             {
                 string sql = "DELETE FROM grade WHERE GradeId = @gradeId";
-                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
+                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
 
-                using (MySqlConnection connection = new MySqlConnection(connString))
+                using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
