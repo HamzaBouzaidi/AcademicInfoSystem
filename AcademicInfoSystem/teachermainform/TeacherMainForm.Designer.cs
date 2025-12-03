@@ -1,4 +1,5 @@
-﻿namespace AcademicInfoSystem.TeacherMainForm
+﻿using AcademicInfoSystem.teachermainform;
+namespace AcademicInfoSystem.TeacherMainForm
 {
     partial class TeacherMainForm
     {
@@ -66,6 +67,7 @@
             gradeListToolStripMenuItem.Name = "gradeListToolStripMenuItem";
             gradeListToolStripMenuItem.Size = new Size(202, 34);
             gradeListToolStripMenuItem.Text = "Grade List ";
+            gradeListToolStripMenuItem.Click += this.gradeListToolStripMenuItem_Click;
             // 
             // TeacherMainForm
             // 
@@ -91,10 +93,19 @@
         private ToolStripMenuItem addGradeToolStripMenuItem;
         private ToolStripMenuItem gradeListToolStripMenuItem;
 
+
         private void addGradeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddGrades addGradesForm = new AddGrades();
             addGradesForm.Show(this);
         }
+
+
+        private void gradeListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GradeList gradeListForm = new GradeList();
+            gradeListForm.Show(this);
+        }
     }
+
 }

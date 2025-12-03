@@ -42,7 +42,30 @@ namespace AcademicInfoSystem.Models
                 return false;
             }
         }
+
+
+        public DataTable GetGradeList(MySqlCommand command)
+        {
+            try
+            {
+                string connString = "server=localhost;database=academicsystem;uid=root;pwd=Iloveshelly123?;";
+                using (MySqlConnection connection = new MySqlConnection(connString))
+                {
+                    command.Connection = connection;
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading grades: {ex.Message}");
+                return new DataTable(); // Return empty table on error
+            }
+        }
     }
-
-
 }
+
+
+
