@@ -30,8 +30,8 @@
         {
             labelTeacherId = new Label();
             labelUserId = new Label();
-            textBoxTeacherId = new TextBox();
-            textBoxUserId = new TextBox();
+            textBoxFirstName = new TextBox();
+            textBoxLastName = new TextBox();
             buttonCancelTeacher = new Button();
             buttonAddTeacher = new Button();
             SuspendLayout();
@@ -42,9 +42,9 @@
             labelTeacherId.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelTeacherId.Location = new Point(68, 93);
             labelTeacherId.Name = "labelTeacherId";
-            labelTeacherId.Size = new Size(164, 29);
+            labelTeacherId.Size = new Size(167, 29);
             labelTeacherId.TabIndex = 0;
-            labelTeacherId.Text = "Teacher ID :";
+            labelTeacherId.Text = " First name :";
             // 
             // labelUserId
             // 
@@ -52,25 +52,25 @@
             labelUserId.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelUserId.Location = new Point(68, 197);
             labelUserId.Name = "labelUserId";
-            labelUserId.Size = new Size(123, 29);
+            labelUserId.Size = new Size(152, 29);
             labelUserId.TabIndex = 1;
-            labelUserId.Text = "User ID :";
+            labelUserId.Text = "Last Name:";
             // 
-            // textBoxTeacherId
+            // textBoxFirstName
             // 
-            textBoxTeacherId.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxTeacherId.Location = new Point(313, 87);
-            textBoxTeacherId.Name = "textBoxTeacherId";
-            textBoxTeacherId.Size = new Size(129, 35);
-            textBoxTeacherId.TabIndex = 2;
+            textBoxFirstName.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxFirstName.Location = new Point(313, 87);
+            textBoxFirstName.Name = "textBoxFirstName";
+            textBoxFirstName.Size = new Size(129, 35);
+            textBoxFirstName.TabIndex = 2;
             // 
-            // textBoxUserId
+            // textBoxLastName
             // 
-            textBoxUserId.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxUserId.Location = new Point(313, 197);
-            textBoxUserId.Name = "textBoxUserId";
-            textBoxUserId.Size = new Size(129, 35);
-            textBoxUserId.TabIndex = 3;
+            textBoxLastName.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxLastName.Location = new Point(313, 197);
+            textBoxLastName.Name = "textBoxLastName";
+            textBoxLastName.Size = new Size(129, 35);
+            textBoxLastName.TabIndex = 3;
             // 
             // buttonCancelTeacher
             // 
@@ -104,8 +104,8 @@
             ClientSize = new Size(500, 534);
             Controls.Add(buttonCancelTeacher);
             Controls.Add(buttonAddTeacher);
-            Controls.Add(textBoxUserId);
-            Controls.Add(textBoxTeacherId);
+            Controls.Add(textBoxLastName);
+            Controls.Add(textBoxFirstName);
             Controls.Add(labelUserId);
             Controls.Add(labelTeacherId);
             Name = "CreateNewTeacherForm";
@@ -118,8 +118,8 @@
 
         private Label labelTeacherId;
         private Label labelUserId;
-        private TextBox textBoxTeacherId;
-        private TextBox textBoxUserId;
+        private TextBox textBoxFirstName;
+        private TextBox textBoxLastName;
         private Button buttonCancelTeacher;
         private Button buttonAddTeacher;
     }

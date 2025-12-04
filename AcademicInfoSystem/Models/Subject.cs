@@ -96,6 +96,7 @@ namespace AcademicInfoSystem.Models
         }
 
 
+
         public bool DeleteSubject(int subjectId)
         {
             try

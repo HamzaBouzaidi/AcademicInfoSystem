@@ -8,40 +8,51 @@ namespace AcademicInfoSystem.Models
 {
     internal class Student
     {
-        public bool AddStudent(string FirstName, string LastName, int UserId, int GroupId, string StudentGroup)
+        public bool AddStudent(string firstName, string lastName, int groupId, string studentGroupName)
         {
             try
             {
-                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
                 using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
-                    if (connection.State == ConnectionState.Closed)
-                    {
-                        connection.Open();
-                    }
+                    connection.Open();
 
-                    MySqlCommand command = new MySqlCommand("INSERT INTO student (FirstName, LastName,  UserId,  GroupId, StudentGroup) VALUES (@fname, @lname, @uid, @gid, @Stdg)", connection);
-                    command.Parameters.Add("@fname", MySqlDbType.VarChar).Value = FirstName;
-                    command.Parameters.Add("@lname", MySqlDbType.VarChar).Value = LastName;
-                    command.Parameters.Add("@uid", MySqlDbType.Int32).Value = UserId;
-                    command.Parameters.Add("@gid", MySqlDbType.Int32).Value = GroupId;
-                    command.Parameters.Add("@Stdg", MySqlDbType.VarChar).Value = StudentGroup;
+                    // Step 1: Create USER
+                    MySqlCommand userCmd = new MySqlCommand(
+                        "INSERT INTO user (FirstName, LastName, Login, Password, Role) " +
+                        "VALUES (@Fname, @Lname, @Login, @Pass, 'student')",
+                        connection);
 
-                    int result = command.ExecuteNonQuery();
+                    userCmd.Parameters.AddWithValue("@Fname", firstName);
+                    userCmd.Parameters.AddWithValue("@Lname", lastName);
+                    userCmd.Parameters.AddWithValue("@Login", firstName.ToLower());
+                    userCmd.Parameters.AddWithValue("@Pass", lastName.ToLower());
 
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Close();
-                    }
+                    userCmd.ExecuteNonQuery();
+
+                    int newUserId = (int)userCmd.LastInsertedId;
+
+                    // Step 2: Create STUDENT linked to the user
+                    MySqlCommand studentCmd = new MySqlCommand(
+                        "INSERT INTO student (FirstName, LastName, UserId, GroupId, StudentGroup) VALUES (@Fname, @Lname, @UsrId, @GrpId, @StdGroup)",
+                        connection);
+                     studentCmd.Parameters.AddWithValue("@Fname", firstName);
+                    studentCmd.Parameters.AddWithValue("@Lname", lastName);
+                    studentCmd.Parameters.AddWithValue("@UsrId", newUserId);
+                    studentCmd.Parameters.AddWithValue("@GrpId", groupId);
+                    studentCmd.Parameters.AddWithValue("@StdGroup", studentGroupName);
+
+                    int result = studentCmd.ExecuteNonQuery();
+
                     return result == 1;
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Database Error: " + ex.Message);
                 return false;
             }
         }
+
 
         public DataTable GetStudentList(MySqlCommand command)
         {
@@ -94,23 +105,37 @@ namespace AcademicInfoSystem.Models
             }
         }
 
-        public bool DeleteStudent(int StudentId)
+        public bool DeleteStudent(int studentId)
         {
             try
             {
-                // FIXED: Use DatabaseConnection.GetConnection() instead of hardcoded string
                 using (MySqlConnection connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 
-                    MySqlCommand command = new MySqlCommand(
-                        "DELETE FROM student WHERE StudentId = @stdid",
+                    // 1️⃣ First, get UserId from Student table
+                    MySqlCommand getUserCmd = new MySqlCommand(
+                        "SELECT UserId FROM student WHERE StudentId=@stdid",
                         connection);
+                    getUserCmd.Parameters.AddWithValue("@stdid", studentId);
 
-                    command.Parameters.AddWithValue("@stdid", StudentId);
+                    object resultObj = getUserCmd.ExecuteScalar();
+                    if (resultObj == null)
+                    {
+                        MessageBox.Show("Student not found.");
+                        return false;
+                    }
 
-                    int result = command.ExecuteNonQuery();
-                    return result == 1;
+                    int userId = Convert.ToInt32(resultObj);
+
+                    // 2️⃣ Delete FROM user → CASCADE removes student
+                    MySqlCommand deleteUserCmd = new MySqlCommand(
+                        "DELETE FROM user WHERE UserId=@uid",
+                        connection);
+                    deleteUserCmd.Parameters.AddWithValue("@uid", userId);
+
+                    int deleted = deleteUserCmd.ExecuteNonQuery();
+                    return deleted == 1;
                 }
             }
             catch (MySqlException ex)
@@ -119,5 +144,6 @@ namespace AcademicInfoSystem.Models
                 return false;
             }
         }
+
     }
 }

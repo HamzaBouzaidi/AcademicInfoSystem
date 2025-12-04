@@ -21,8 +21,8 @@ namespace AcademicInfoSystem.Teachers_Form
 
         bool verify()
         {
-            if ((textBoxTeacherId.Text.Trim() == "") ||
-                (textBoxUserId.Text.Trim() == ""))
+            if ((textBoxFirstName.Text.Trim() == "") ||
+                (textBoxLastName.Text.Trim() == ""))
             {
                 return false;
             }
@@ -36,23 +36,25 @@ namespace AcademicInfoSystem.Teachers_Form
 
         private void buttonAddTeacher_Click(object sender, EventArgs e)
         {
-            if (!verify())
+            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "")
             {
-                MessageBox.Show("Please fill in all fields.");
+                MessageBox.Show("Fill all fields!");
                 return;
             }
+
             Teacher teacher = new Teacher();
 
-            int TeacherId = textBoxTeacherId.Text.Trim() == "" ? 0 : int.Parse(textBoxTeacherId.Text.Trim());
-            int UserId = textBoxUserId.Text.Trim() == "" ? 0 : int.Parse(textBoxUserId.Text.Trim());
+            bool success = teacher.AddTeacher(
+                textBoxFirstName.Text.Trim(),
+                textBoxLastName.Text.Trim()
+            );
 
-
-            bool success = teacher.AddTeacher(TeacherId, UserId);
             if (success)
                 MessageBox.Show("Teacher added successfully!");
             else
-                MessageBox.Show("Failed to add Teacher. Check foreign keys or database connection.");
+                MessageBox.Show("Failed to add teacher.");
         }
+
 
         private void buttonCancelTeacher_Click(object sender, EventArgs e)
         {

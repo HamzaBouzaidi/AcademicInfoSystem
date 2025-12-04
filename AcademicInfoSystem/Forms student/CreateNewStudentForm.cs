@@ -20,29 +20,26 @@ namespace AcademicInfoSystem
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
-           
             if (!verify())
             {
-                MessageBox.Show("Please fill in all fields.");
+                MessageBox.Show("Please fill in all required fields.");
                 return;
             }
 
-            Student student = new Student();
             string firstName = textBoxFname.Text.Trim();
-            string lastName = textBoxLname.Text.Trim();      
-            string GroupIdtext = textBoxGroupId.Text.Trim();
-            string StudentGroup = textBoxStudentGroup.Text.Trim();
+            string lastName = textBoxLname.Text.Trim();
+            int groupId = int.Parse(textBoxGroupId.Text.Trim());
+            string groupName = textBoxStudentGroup.Text.Trim();
 
-            int userId = 1;   // Replace with the actual UserId from your User table
-            int GroupId = int.Parse(GroupIdtext);
-            bool success = student.AddStudent(firstName, lastName, userId, GroupId, StudentGroup);
-
+            Student student = new Student();
+            bool success = student.AddStudent(firstName, lastName, groupId, groupName);
 
             if (success)
                 MessageBox.Show("Student added successfully!");
             else
-                MessageBox.Show("Failed to add student. Check foreign keys or database connection.");
+                MessageBox.Show("Failed to add student.");
         }
+
 
 
         bool verify()

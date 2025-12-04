@@ -54,14 +54,19 @@ namespace AcademicInfoSystem.Teachers_Form
         private void buttonRemoveTeacher_Click(object sender, EventArgs e)
         {
             int TeacherId = Convert.ToInt32(textBoxTeacherId.Text);
+
             if (teacher.DeleteTeacher(TeacherId))
             {
-                MessageBox.Show("Teacher  deleted successfully.");
+                MessageBox.Show("Teacher deleted successfully.");
+
+                textBoxTeacherId.Clear();
+                textBoxUserId.Clear();
             }
             else
             {
-                MessageBox.Show("Failed to delete Teacher . It may be referenced by other records.");
+                MessageBox.Show("Teacher not found or already deleted.");
             }
         }
+
     }
 }
